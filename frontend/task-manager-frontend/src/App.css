@@ -387,7 +387,8 @@
 /* Custom Table alignment tweak */
 .custom-table td:last-child {
     text-align: right;
-} */
+}
+
 .icon-svg {
     stroke: currentColor; 
 }
