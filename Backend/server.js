@@ -6,14 +6,17 @@ dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
-const startServer = async () => {
-    try {
-        await connectDB();
-        app.listen(PORT, () => console.log(`Server running on ${PORT}`));
-    } catch (err) {
-        console.error("Failed to start server:", err);
-        process.exit(1);
-    }
+const startServer = () => {
+    app.listen(PORT, async () => {
+        console.log(`Server running on ${PORT}`);
+
+        try {
+            await connectDB();
+        } catch (err) {
+            console.error("MongoDB connection failed during startup:", err.message);
+            console.error("The API is running, but database-backed routes will fail until MongoDB is reachable.");
+        }
+    });
 };
 
 startServer();
