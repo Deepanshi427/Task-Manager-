@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { showSuccessToast, showErrorToast } from '../utils/toastNotification';
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
                 </form>
                 <div className="divider">OR</div>
                 {/* <button className="google-btn">CONTINUE WITH GOOGLE</button> */}
-                <p className="footer-text">No access clearance? <a href="/register">Request Access</a></p>
+                <p className="footer-text">No access clearance? <Link to="/register">Request Access</Link></p>
             </div>
         </div>
     );
