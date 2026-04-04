@@ -24,6 +24,7 @@ exports.register = async (req, res) => {
             token: generateToken(user._id)
         });
     } catch (err) {
+        console.error("Register error:", err);
         res.status(500).json({ message: err.message });
     }
 };
@@ -45,6 +46,7 @@ exports.login = async (req, res) => {
             token: generateToken(user._id)
         });
     } catch (err) {
+        console.error("Login error:", err);
         res.status(500).json({ message: err.message });
     }
 };
