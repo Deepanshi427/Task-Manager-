@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { showSuccessToast, showErrorToast } from '../utils/toastNotification';
 
 const EditTaskDrawer = ({ isOpen, onClose, token, task, refreshTasks }) => {
@@ -47,7 +47,7 @@ const EditTaskDrawer = ({ isOpen, onClose, token, task, refreshTasks }) => {
                 status: formData.status
             };
 
-            await axios.put(`http://localhost:5000/api/tasks/${task._id}`, payload, config);
+            await api.put(`/tasks/${task._id}`, payload, config);
 
             // 1. Refresh the table
             if (refreshTasks) refreshTasks();

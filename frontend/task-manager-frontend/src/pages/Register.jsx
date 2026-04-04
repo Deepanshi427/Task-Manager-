@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import api from '../services/api';
 import { showSuccessToast, showErrorToast } from '../utils/toastNotification';
 
 const Register = () => {
@@ -19,7 +19,7 @@ const Register = () => {
             return;
         }
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
+            const res = await api.post('/auth/register', { name, email, password });
             login(res.data.token);
             showSuccessToast('Account created successfully!');
             navigate('/dashboard');

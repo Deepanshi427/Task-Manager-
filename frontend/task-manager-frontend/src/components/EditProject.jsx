@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
+import api from '../services/api';
 
 const EditProject = () => {
     const { id } = useParams(); // Grabs the ID from the URL
@@ -16,7 +16,7 @@ const EditProject = () => {
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/projects/${id}`, {
+                const res = await api.get(`/projects/${id}`, {
                     headers: { Authorization: `Bearer ${user.token}` }
                 });
                 setFormData({
@@ -47,7 +47,7 @@ const EditProject = () => {
         if (!validate()) return;
 
         try {
-            await axios.put(`http://localhost:5000/api/projects/${id}`, formData, {
+            await api.put(`/projects/${id}`, formData, {
                 headers: { Authorization: `Bearer ${user.token}` }
             });
             alert("Project updated successfully!");

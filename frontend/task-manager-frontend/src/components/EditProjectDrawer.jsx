@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { showSuccessToast, showErrorToast } from '../utils/toastNotification';
 
 const EditProjectDrawer = ({ isOpen, onClose, token, projectId, refreshProjects }) => {
@@ -16,7 +16,7 @@ const EditProjectDrawer = ({ isOpen, onClose, token, projectId, refreshProjects 
                     const config = {
                         headers: { Authorization: `Bearer ${token}` }
                     };
-                    const res = await axios.get(`http://localhost:5000/api/projects/${projectId}`, config);
+                    const res = await api.get(`/projects/${projectId}`, config);
                     setFormData({
                         title: res.data.title,
                         description: res.data.description
@@ -58,7 +58,7 @@ const EditProjectDrawer = ({ isOpen, onClose, token, projectId, refreshProjects 
                 headers: { Authorization: `Bearer ${token}` }
             };
 
-            await axios.put(`http://localhost:5000/api/projects/${projectId}`, formData, config);
+            await api.put(`/projects/${projectId}`, formData, config);
 
             // 1. Refresh the table
             if (refreshProjects) refreshProjects();

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import api from '../services/api';
 import { showSuccessToast, showErrorToast } from '../utils/toastNotification';
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+            const res = await api.post('/auth/login', { email, password });
             login(res.data.token);
             showSuccessToast('Login successful!');
             navigate('/dashboard');

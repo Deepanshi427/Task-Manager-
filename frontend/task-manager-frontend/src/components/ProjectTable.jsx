@@ -78,7 +78,7 @@
 // export default ProjectTable;
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 import { showSuccessToast, showErrorToast } from '../utils/toastNotification';
 
 const ProjectTable = ({ projects, setProjects, token, onEditProject }) => {
@@ -86,7 +86,7 @@ const ProjectTable = ({ projects, setProjects, token, onEditProject }) => {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this project?")) {
             try {
-                await axios.delete(`http://localhost:5000/api/projects/${id}`, {
+                await api.delete(`/projects/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setProjects(projects.filter(p => p._id !== id));

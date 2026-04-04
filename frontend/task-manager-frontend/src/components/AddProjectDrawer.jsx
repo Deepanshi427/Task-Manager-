@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { showSuccessToast, showErrorToast } from '../utils/toastNotification';
 
 const AddProjectDrawer = ({ isOpen, onClose, token, refreshProjects }) => {
@@ -34,7 +34,7 @@ const AddProjectDrawer = ({ isOpen, onClose, token, refreshProjects }) => {
                 headers: { Authorization: `Bearer ${token}` }
             };
 
-            const res = await axios.post('http://localhost:5000/api/projects', formData, config);
+            const res = await api.post('/projects', formData, config);
 
             // 1. Refresh the table
             if (refreshProjects) refreshProjects();

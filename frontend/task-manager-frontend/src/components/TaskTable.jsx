@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { showSuccessToast, showErrorToast } from '../utils/toastNotification';
 
 const TaskTable = ({ tasks, setTasks, token, projectId, onEditTask }) => {
@@ -7,7 +7,7 @@ const TaskTable = ({ tasks, setTasks, token, projectId, onEditTask }) => {
     const handleDelete = async (taskId) => {
         if (window.confirm("Are you sure you want to delete this task?")) {
             try {
-                await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
+                await api.delete(`/tasks/${taskId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setTasks(tasks.filter(t => t._id !== taskId));

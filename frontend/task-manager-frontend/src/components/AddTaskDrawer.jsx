@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { showSuccessToast, showErrorToast } from '../utils/toastNotification';
 
 const AddTaskDrawer = ({ isOpen, onClose, token, projectId, refreshTasks }) => {
@@ -34,7 +34,7 @@ const AddTaskDrawer = ({ isOpen, onClose, token, projectId, refreshTasks }) => {
                 status: formData.status
             };
 
-            const res = await axios.post(`http://localhost:5000/api/tasks/${projectId}`, payload, config);
+            const res = await api.post(`/tasks/${projectId}`, payload, config);
 
             // 1. Refresh the table
             if (refreshTasks) refreshTasks();

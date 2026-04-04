@@ -56,11 +56,11 @@
 // export default Dashboard;
 
 import React, { useEffect, useState, useContext, useCallback } from 'react';
-import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import ProjectTable from "../components/ProjectTable";
 import AddProjectDrawer from "../components/AddProjectDrawer";
 import EditProjectDrawer from "../components/EditProjectDrawer"; // Import Edit Drawer
+import api from '../services/api';
 
 const Dashboard = () => {
     const [projects, setProjects] = useState([]);
@@ -74,7 +74,7 @@ const Dashboard = () => {
     const fetchProjects = useCallback(async () => {
         try {
             if (user?.token) {
-                const res = await axios.get('http://localhost:5000/api/projects', {
+                const res = await api.get('/projects', {
                     headers: { Authorization: `Bearer ${user.token}` }
                 });
                 setProjects(res.data);
