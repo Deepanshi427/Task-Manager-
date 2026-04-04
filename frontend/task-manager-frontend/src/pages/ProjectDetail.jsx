@@ -48,13 +48,12 @@ const ProjectDetail = () => {
             <div className="table-header-row">
                 <div>
                     <button onClick={() => navigate('/dashboard')} className="back-btn">← Back to Projects</button>
-                    <h2 style={{ marginTop: '10px' }}>{project.title}</h2>
-                    <p className="text-muted" style={{ marginTop: '5px' }}>{project.description}</p>
+                    <h2 className="project-page-heading">{project.title}</h2>
+                    <p className="text-muted project-page-description">{project.description}</p>
                 </div>
                 <button
                     className="add-project-btn"
                     onClick={() => setIsAddDrawerOpen(true)}
-                    style={{ marginTop: '0' }}
                 >
                     <span className="plus-icon">+</span> New Task
                 </button>

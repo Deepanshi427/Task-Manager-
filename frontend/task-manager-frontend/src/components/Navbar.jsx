@@ -13,13 +13,12 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="navbar-content" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+            <div className="navbar-content">
                 <h1 className="navbar-title">Task Manager</h1>
                 {user && (
                     <button
                         onClick={handleLogout}
                         className="logout-btn"
-                        style={{ backgroundColor: '#7c3aed', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: '500', position: 'absolute', right: '20px' }}
                     >
                         Logout
                     </button>

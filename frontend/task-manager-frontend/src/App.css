@@ -192,6 +192,7 @@
     margin: 0 auto;
     padding: 40px 20px;
     text-align: left; /* Critical: Resets the center alignment from index.css */
+    box-sizing: border-box;
 }
 
 .table-frame {
@@ -201,6 +202,7 @@
     padding: 24px;
     margin-top: 20px;
     box-shadow: var(--shadow);
+    box-sizing: border-box;
 }
 
 /* Controls Alignment */
@@ -209,6 +211,8 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 .table-search {
@@ -218,17 +222,21 @@
     border-radius: 8px !important;
     width: 250px !important;
     color: white !important;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* Table Mechanics */
 .table-responsive {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .custom-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    min-width: 720px;
 }
 
 .custom-table th {
@@ -247,6 +255,7 @@
     vertical-align: middle;
     color: #f3f4f6;
     text-align: left; /* Force left alignment */
+    word-break: break-word;
 }
 
 /* Cell Contents */
@@ -296,6 +305,7 @@
     align-items: flex-end;
     margin-bottom: 30px;
     padding: 0 5px;
+    gap: 16px;
 }
 
 .header-left h2 {
@@ -324,6 +334,7 @@
     gap: 8px;
     transition: transform 0.2s, background-color 0.2s;
     box-shadow: 0 4px 15px rgba(170, 59, 255, 0.3);
+    white-space: nowrap;
 }
 
 .add-project-btn:hover {
@@ -347,6 +358,57 @@
     font-family: var(--mono);
     color: var(--accent);
 }
+
+.navbar {
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px;
+    box-sizing: border-box;
+}
+
+.navbar-content {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar-title {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 40px);
+}
+
+.logout-btn {
+    background-color: #7c3aed;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.back-btn {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.project-page-heading {
+    margin-top: 10px;
+}
+
+.project-page-description {
+    margin-top: 5px;
+    max-width: 65ch;
+}
+
 .actions-cell {
     display: flex;
     gap: 15px;
@@ -425,6 +487,7 @@
 /* The Sidebar Drawer box itself */
 .drawer-content {
     width: 450px;
+    max-width: 100vw;
     height: 100%;
     background: #1f2028; /* Dark grey frame */
     padding: 40px 30px;
@@ -470,7 +533,8 @@
 }
 
 .form-group input, 
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     background: #16171d;
     border: 1px solid #2e303a;
@@ -478,6 +542,7 @@
     padding: 12px;
     color: white;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 .error-border {
@@ -534,15 +599,137 @@ body.drawer-open {
 
 /* THE SIDEBAR: Ensure it has a width and background */
 .drawer-content {
-    width: 450px;
+    width: min(100vw, 450px);
     height: 100%;
     background: #1f2028; /* Same color as your table frame */
     box-shadow: -5px 0 25px rgba(0,0,0,0.5);
     transform: translateX(100%); /* Slide it off screen to the right */
     transition: transform 0.3s ease-out;
     padding: 30px;
+    box-sizing: border-box;
 }
 
 .drawer-overlay.active .drawer-content {
     transform: translateX(0); /* Slide it in */
+}
+
+@media (max-width: 1024px) {
+    .dashboard-container {
+        padding: 32px 20px;
+    }
+
+    .table-header-row {
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 14px 16px;
+    }
+
+    .navbar-content {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .logout-btn {
+        width: 100%;
+    }
+
+    .dashboard-container {
+        padding: 24px 16px;
+    }
+
+    .table-frame {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    .table-header-row,
+    .table-top-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .table-search,
+    .search-container,
+    .add-project-btn {
+        width: 100% !important;
+    }
+
+    .add-project-btn {
+        justify-content: center;
+    }
+
+    .project-page-description {
+        max-width: 100%;
+    }
+
+    .actions-cell {
+        padding-right: 0;
+        gap: 12px;
+    }
+
+    .drawer-content {
+        width: 100vw;
+        padding: 24px 18px;
+    }
+
+    .drawer-header {
+        margin-bottom: 28px;
+        padding-bottom: 16px;
+    }
+
+    .custom-table {
+        min-width: 640px;
+    }
+
+    .custom-table th,
+    .custom-table td {
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-container {
+        padding: 20px 12px;
+    }
+
+    .table-frame {
+        padding: 14px;
+    }
+
+    .table-header-row {
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    .header-left h2,
+    .project-page-heading {
+        font-size: 24px;
+    }
+
+    .table-search {
+        padding: 10px 12px !important;
+    }
+
+    .drawer-content {
+        padding: 20px 14px;
+    }
+
+    .close-x {
+        font-size: 28px;
+    }
+
+    .title-cell-content {
+        gap: 10px;
+    }
+
+    .project-avatar {
+        width: 32px;
+        height: 32px;
+    }
 }

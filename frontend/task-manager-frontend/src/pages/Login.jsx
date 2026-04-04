@@ -38,7 +38,7 @@ const Login = () => {
                 </form>
                 <div className="divider">OR</div>
                 {/* <button className="google-btn">CONTINUE WITH GOOGLE</button> */}
-                <p className="footer-text">No access clearance? <Link to="/register">Request Access</Link></p>
+                <p className="footer-text">No access clearance? <Link to="/register">Sign Up</Link></p>
             </div>
         </div>
     );

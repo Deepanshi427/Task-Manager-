@@ -110,14 +110,6 @@ const EditTaskDrawer = ({ isOpen, onClose, token, task, refreshTasks }) => {
                         <select
                             value={formData.status}
                             onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                            style={{
-                                width: '100%',
-                                padding: '10px',
-                                borderRadius: '4px',
-                                border: '1px solid #ddd',
-                                fontSize: '14px',
-                                cursor: 'pointer'
-                            }}
                         >
                             <option value="pending">Pending</option>
                             <option value="in-progress">In Progress</option>
